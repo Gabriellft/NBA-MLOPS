@@ -7,53 +7,54 @@ SAFETY=$(VENV)/bin/safety
 
 ## environnement
 clean-venv:
-	rm -rf $(VENV)
+	echo "Have a look on if you're on Apple M2 chips https://stackoverflow.com/a/76264243"
+# rm -rf $(VENV)
 
 add-venv:
-	python$(PYTHON_VERSION) -m venv $(VENV)
+	python -m venv $(VENV)
 	echo "Have a look on if you're on Apple M2 chips https://stackoverflow.com/a/76264243"
 
 install-dev:
-	$(PYTHON) -m pip install --upgrade pip
-	$(PYTHON) -m pip install -r requirements-dev.txt
+	python -m pip install --upgrade pip
+	python -m pip install -r requirements-dev.txt
 
 install:
-	$(PYTHON) -m pip install -r requirements.txt --no-cache-dir
+	python -m pip install -r requirements.txt --no-cache-dir
 
 
 ## linters
 lint:
-	$(PYTHON) -m pylint $(dir) --rcfile ./setup.cfg
+	python -m pylint $(dir) --rcfile ./setup.cfg
 
 black:
-	$(PYTHON) -m black $(dir) --check
+	python -m black $(dir) --check
 
 flake:
-	$(PYTHON) -m flake8 $(dir) --config ./setup.cfg
+	python -m flake8 $(dir) --config ./setup.cfg
 
 isort:
-	$(PYTHON) -m isort $(dir) --check-only --settings-file ./setup.cfg
+	python -m isort $(dir) --check-only --settings-file ./setup.cfg
 
 format:
-	$(PYTHON) -m black $(dir)
-	$(PYTHON) -m isort $(dir) --settings-file ./setup.cfg
+	python -m black $(dir)
+	python -m isort $(dir) --settings-file ./setup.cfg
 
 
 check: black isort flake
 
 format-tests:
-	$(PYTHON) -m black tests
-	$(PYTHON) -m isort tests --settings-file ./setup.cfg
+	python -m black tests
+	python -m isort tests --settings-file ./setup.cfg
 
 ## unit tests and coverage
 test:
-	$(PYTHON) -m pytest tests -vv --capture=tee-sys
+	python -m pytest tests -vv --capture=tee-sys
 
 coverage:
-	$(PYTHON) -m pytest tests --cov-config=.coveragerc --cov=$(dir)
+	python -m pytest tests --cov-config=.coveragerc --cov=$(dir)
 
 coverage-html:
-	$(PYTHON) -m pytest tests --cov-config=.coveragerc --cov=$(dir) --cov-report html
+	python -m pytest tests --cov-config=.coveragerc --cov=$(dir) --cov-report html
 
 
 clean-logs:
