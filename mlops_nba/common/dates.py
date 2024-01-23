@@ -1,10 +1,12 @@
 from datetime import date, datetime
 
+
 def get_today():
     """Return today's date."""
     return date.today().strftime("%Y-%m-%d")
 
-def get_now(for_files:bool=False):
+
+def get_now(for_files: bool = False):
     """Return today's date.
 
     Args:
