@@ -31,6 +31,7 @@
 # if __name__ == "__main__":
 #     main()
 
+# todo batch the kaggle csv file to fake new data then afterwards run analytics (extract.py) on the batch
 
 import pandas as pd
 from pathlib import Path
