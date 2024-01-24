@@ -16,6 +16,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 import joblib
 import datetime
+from pathlib import Path
 
 from sklearn.base import BaseEstimator
 
@@ -138,6 +139,11 @@ def predict_and_store_output(model, X_test, y_test):
     # Generate a timestamp
     current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     output_file = OUTPUT_DIR / f"predictions_{current_time}.parquet"
+
+    # Ensure the output directory exists
+    output_dir = output_file.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     output_df.to_parquet(output_file, compression='snappy')
     logging.info(f"Predictions stored in {output_file}")
     
@@ -175,7 +181,7 @@ if __name__ == "__main__":
         logging.info(f"Model training completed with RMSE: {rmse_pts}")
 
         logging.info("Starting prediction...")
-        # predict_and_store_output(model, X_test, y_test)
+        predict_and_store_output(model, X_test, y_test)
         logging.info("Prediction completed.")
     else:
         logging.info("No data to train model.")

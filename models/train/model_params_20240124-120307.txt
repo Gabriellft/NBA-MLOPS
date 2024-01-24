@@ -1,0 +1,53 @@
+memory: None
+steps: [('preprocessor', ColumnTransformer(transformers=[('num', StandardScaler(),
+                                 ['Age', 'G', 'GS', 'MP', 'FG', 'FGA', '3P',
+                                  '3PA', '2P', '2PA', 'FT', 'FTA', 'ORB', 'DRB',
+                                  'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF']),
+                                ('cat', OneHotEncoder(handle_unknown='ignore'),
+                                 ['Pos', 'Tm'])])), ('regressor', RandomForestRegressor())]
+verbose: False
+preprocessor: ColumnTransformer(transformers=[('num', StandardScaler(),
+                                 ['Age', 'G', 'GS', 'MP', 'FG', 'FGA', '3P',
+                                  '3PA', '2P', '2PA', 'FT', 'FTA', 'ORB', 'DRB',
+                                  'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF']),
+                                ('cat', OneHotEncoder(handle_unknown='ignore'),
+                                 ['Pos', 'Tm'])])
+regressor: RandomForestRegressor()
+preprocessor__n_jobs: None
+preprocessor__remainder: drop
+preprocessor__sparse_threshold: 0.3
+preprocessor__transformer_weights: None
+preprocessor__transformers: [('num', StandardScaler(), ['Age', 'G', 'GS', 'MP', 'FG', 'FGA', '3P', '3PA', '2P', '2PA', 'FT', 'FTA', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF']), ('cat', OneHotEncoder(handle_unknown='ignore'), ['Pos', 'Tm'])]
+preprocessor__verbose: False
+preprocessor__verbose_feature_names_out: True
+preprocessor__num: StandardScaler()
+preprocessor__cat: OneHotEncoder(handle_unknown='ignore')
+preprocessor__num__copy: True
+preprocessor__num__with_mean: True
+preprocessor__num__with_std: True
+preprocessor__cat__categories: auto
+preprocessor__cat__drop: None
+preprocessor__cat__dtype: <class 'numpy.float64'>
+preprocessor__cat__feature_name_combiner: concat
+preprocessor__cat__handle_unknown: ignore
+preprocessor__cat__max_categories: None
+preprocessor__cat__min_frequency: None
+preprocessor__cat__sparse: deprecated
+preprocessor__cat__sparse_output: True
+regressor__bootstrap: True
+regressor__ccp_alpha: 0.0
+regressor__criterion: squared_error
+regressor__max_depth: None
+regressor__max_features: 1.0
+regressor__max_leaf_nodes: None
+regressor__max_samples: None
+regressor__min_impurity_decrease: 0.0
+regressor__min_samples_leaf: 1
+regressor__min_samples_split: 2
+regressor__min_weight_fraction_leaf: 0.0
+regressor__n_estimators: 100
+regressor__n_jobs: None
+regressor__oob_score: False
+regressor__random_state: None
+regressor__verbose: 0
+regressor__warm_start: False
