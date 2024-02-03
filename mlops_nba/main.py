@@ -1,3 +1,8 @@
+import warnings
+
+# Ignorer tous les FutureWarning
+warnings.filterwarnings(action='ignore', category=FutureWarning)
+
 import pandas as pd
 from pathlib import Path
 from mlops_nba.common.io import create_folder
@@ -177,13 +182,19 @@ if __name__ == "__main__":
     if all_processed_data:
         merged_data = merge_and_store_data(all_processed_data)
         logging.info("Starting model training...")
+        print("Starting model training...")
         model, X_test, y_test ,rmse_pts= train_model(merged_data)
         logging.info(f"Model training completed with RMSE: {rmse_pts}")
+        print(f"Model training completed with RMSE: {rmse_pts}")
 
         logging.info("Starting prediction...")
+        print("Starting prediction...")
         predict_and_store_output(model, X_test, y_test)
         logging.info("Prediction completed.")
+        print("Prediction completed.")
+        
     else:
         logging.info("No data to train model.")
+        print("No data to train model.")
 
-    print("NBA data preprocessing, model training, and prediction completed.")
+    print("Pipeline completed.")
