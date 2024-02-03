@@ -10,7 +10,7 @@ __pycache__/
 
 .output/
 settings_local.py
-data/
+
 
 
 .pytest_cache
